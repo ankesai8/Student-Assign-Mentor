@@ -5,12 +5,10 @@ const Mentor = require('../Models/MentorModel');
 const mentorRouter = express.Router();
 /* get all mentor details */
 mentorRouter.get('/', async (req,res) => {
-    try{
-        const mentors = await Mentor.find();
-        res.send(mentors);
-    }catch(err){
-        res.status(400).send(err);
+    try{ const mentors = await Mentor.find();
+         res.send(mentors);
     }
+    catch(err){res.status(400).send(err);}
     
 })
 /* create mentor */
@@ -21,13 +19,12 @@ mentorRouter.post('/',async (req,res) => {
         "email" : email,
         "course" : course
     })
-    try{
-        const newMentor = await addMentor.save();
+    try{const newMentor = await addMentor.save();
         res.send(newMentor)
-    }catch(err){
-        res.status(500);
-        res.send(err);
     }
+    catch(err){
+        res.status(500);
+        res.send(err);}
 })
 /* get mentor based on ID */
 mentorRouter.get('/get-mentor/:id',async (req,res) => {
