@@ -12,10 +12,12 @@ app.use(cors()); /* To avoid cross origin error */
 
 app.use(express.json());
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 9009;
 const URL = process.env.MONGODB_URL;
 
 const mongoose = require("mongoose");
+
+app.listen(PORT, () => console.log(`App started on the port ${PORT}`));
 
 mongoose.connect(URL, {
   useNewUrlParser: true,
@@ -32,4 +34,4 @@ app.get("/", (req, res) =>
 app.use("/Mentors", mentorRouter);
 app.use("/Students", studentRouter);
 
-app.listen(PORT, () => console.log(`Server started in the port ${PORT}`));
+
